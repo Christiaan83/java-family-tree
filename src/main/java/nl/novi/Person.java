@@ -1,5 +1,7 @@
 package nl.novi;
 
+import nl.novi.enumeration.Sex;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +9,7 @@ public class Person {
     private String name;
     private String middleName;
     private String lastName;
-    private String sex;
+    private Sex sex;
     private int age;
     private Person mother;
     private Person father;
@@ -15,14 +17,14 @@ public class Person {
     private List<Person> children = new ArrayList<Person>();
     private List<Pet> pets = new ArrayList<Pet>();
 
-    public Person(String middleName, String lastName, String sex, int age) {
-        this.middleName = middleName;
+    public Person(String name, String lastName, Sex sex, int age) {
+        this.name = name;
         this.lastName = lastName;
         this.sex = sex;
         this.age = age;
     }
 
-    public Person(String name, String middleName, String lastName, String sex, int age) {
+    public Person(String name, String middleName, String lastName, Sex sex, int age) {
         this.name = name;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -42,7 +44,7 @@ public class Person {
         return lastName;
     }
 
-    public String getSex() {
+    public Sex getSex() {
         return sex;
     }
 
@@ -82,7 +84,7 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
     }
 
@@ -110,47 +112,43 @@ public class Person {
         this.pets = pets;
     }
 
-    public void addParents(Person mother, Person father){
+    public void addParents(Person mother, Person father) {
         this.mother = mother;
-        this.father =father;
+        this.father = father;
         mother.addChild(this);
         father.addChild(this);
-
     }
 
-    public void addChild(Person child){
+    public void addChild(Person child) {
 
-        if (!this.children.contains(child)){
+        if (!this.children.contains(child)) {
             this.children.add(child);
         }
     }
 
-    public void addPet(Pet pet){
+    public void addPet(Pet pet) {
 
-        if (!this.pets.contains(pet)){
+        if (!this.pets.contains(pet)) {
             this.pets.add(pet);
         }
-
     }
 
-    public void addSiblings(Person sibling){
+    public void addSiblings(Person sibling) {
 
-        if (!this.siblings.contains(sibling)){
+        if (!this.siblings.contains(sibling)) {
             this.siblings.add(sibling);
         }
     }
 
-    public List<Person> getGrandChildren(){
+    public List<Person> getGrandChildren() {
         List<Person> grandChildren = new ArrayList<>();
 
-        for(Person child: children){
-            for(Person grandChild : child.getChildren()){
+        for (Person child : children) {
+            for (Person grandChild : child.getChildren()) {
                 grandChildren.add(grandChild);
             }
         }
         return grandChildren;
     }
-
-
 }
 
